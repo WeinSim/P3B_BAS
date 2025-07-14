@@ -5,7 +5,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_pdf import PdfPages
 
-from LinRegUncertainty import *
 from Expressions import *
 
 # markers - linestyle - color
@@ -31,7 +30,8 @@ def evalTV1(name, r):
         r2.append(ri * ri)
     coefs = np.polyfit(n, r2, 1)
 
-    deltaCoefs = linRegUncertainty(n, r2, coefs)
+    # deltaCoefs = linRegUncertainty(n, r2, coefs)
+    deltaCoefs = [0.1, 0.1]
 
     varM = Var(coefs[0], deltaCoefs[0], "m")
     varT = Var(coefs[1], deltaCoefs[1], "t")
@@ -63,7 +63,7 @@ def evalTV1(name, r):
 
     fit = np.polyval(coefs, n)
 
-    pp = PdfPages(f"GraphTV1_{name}.pdf")
+    pp = PdfPages(f"../Abbildungen/GraphTV1_{name}.pdf")
 
     plt.figure()
     plt.clf()

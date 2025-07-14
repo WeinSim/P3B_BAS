@@ -1,5 +1,21 @@
 import math
 
+# Diese Datei enthält verschieden Klassen um arithmetische Operationen zu
+# repräsentieren. Zu den Operationen zählen Addition (Add), Subtraktion (Sub),
+# Multiplikation (Mul), Division (Div), Exponentiation (Pow), Sinus (Sin),
+# Cosinus (Cos) und der Zehnerlogarithmus (Log10).
+# Diese Operationen bilden die Knoten der entstehenden Syntaxbäume.
+# Jede Instanz besitzt ein bzw. zwei arithmetische Ausdrücke als "Kinder".
+# Die Blätter bilden Konstanten (Const) und Variablen (Var).
+# Konstanten besitzen einen festen Wert, während Variablen einen Wert
+# und eine Unsicherheit haben.
+# Ein arithmetischer Ausdruck kann mit der Funktion eval() ausgewertet werden.
+# Mit derivative() wird die Ableitung nach der angegebenen Variable gebildet,
+# welche wieder ein arithmetischer Ausdruck ist.
+# Mit den Funktionen gaussian und minMax wird die gauß'sche Unsicherheit
+# bzw. die Min-Max-Unsicherheit eines arithmetischen Ausdrucks
+# mit den gegebenen Parametern berechnet.
+
 class Add:
 
     def __init__(self, child1, child2):
@@ -242,6 +258,7 @@ class Var:
     def priority():
         return 3
 
+# Hilfsfunktion zur Darstellung eines arithmetischen Ausdrucks als String.
 def toStr(expr, infix):
     c1Parens = expr.child1.priority() <= expr.priority()
     c2Parens = expr.child2.priority() <= expr.priority()
@@ -254,6 +271,9 @@ def toStr(expr, infix):
     return f"{c1} {infix} {c2}"
     # return f"({self.child1.__str__()} + {self.child2.__str__()})"
 
+# Vereinfachung eines arithmetischen Ausdrucks.
+# Hauptsächlich werden Konstanten zusammengefasst bzw. entfernt
+# (z.B. x + 0 = x, 1 * x = x, 0 * x = 0)
 def simplify(expr):
     match expr:
         case Add() | Sub() | Mult() | Div():
@@ -320,7 +340,8 @@ def simplify(expr):
                 return expr.child1
     return expr
 
-# Calculate the gaussian uncertainty of expr
+# Berechnung der gauß'schen Unsicherheit des Ausdrucks expr mit den Variablen
+# params
 def gaussian(expr, params):
     total = 0
     for param in params:
@@ -332,7 +353,8 @@ def gaussian(expr, params):
         total += delta ** 2
     return total ** 0.5
 
-# Calculate the uncertainty of expr using the min-max method
+# Berechnung der Unsicherheit des Ausdrucks expr mit der Min-Max-Methode
+# und den Variablen params
 def minMax(expr, params):
     minVal = expr.eval()
     maxVal = expr.eval()
