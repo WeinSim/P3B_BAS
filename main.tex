@@ -16,8 +16,10 @@
     urlcolor=blue
 ]{hyperref}
 \usepackage{graphicx}
+\usepackage{multirow}
 \usepackage{amssymb}
 \usepackage{float}
+\usepackage{siunitx} \sisetup{locale = DE, uncertainty-mode = separate}
 \usepackage{pdfpages}
 \usepackage{multirow}
 \usepackage[
@@ -52,18 +54,11 @@
 \newcommand{\pd}[2]{
     \frac{\partial #1}{\partial #2}
 }
-\newcommand{\result}[2]{
-    #1 \, \text{#2}
-}
 
 % Markieren von verwendetem Code
 \definecolor{codebg}{RGB}{230, 240, 255}
-\newcommand{\coderef}[1]{
-    \text{
-        \enspace
-        \footnotesize
-        \colorbox{codebg}{\texttt{#1()}}
-    }
+\newcommand{\coderef}[1]{%
+    \text{\footnotesize \colorbox{codebg}{\texttt{#1()}}}%
 }
 
 % Formatieren von Code im Anhang
@@ -101,7 +96,7 @@
     BAS - Balmer-Serie
 }
 \newcommand{\githuburl}{
-    \url{https://github.com/WeinSim/P3B/BAS}
+    \url{https://github.com/WeinSim/P3B}
 }
 
 % Titel und Autor
@@ -152,6 +147,7 @@
 
 \newpage
 
+
 \section{Vobereitung}
 
 \subsection{Physikalischer Hintergrund}
@@ -198,7 +194,7 @@ genau $\hbar m$ sind, wobei $l$ und $m$ die Nebenquantenzahlen des Zustands des
 Elektrons sind.
 
 Die $z$-Achse war bei den Rechnungen beliebig gewählt.
-Also sind $\hbar m$ für $-l \leq m \leq l$ die Eigenzustände des Drehimpulses
+Also sind $\hbar m$ für $-l \leq m \leq l$ die Eigenwerte des Drehimpulses
 um jede beliebige Achse.
 
 \cite[157--161]{gri_qm}
@@ -350,9 +346,9 @@ leicht unterschiedlichen Wert an.
 Insgesamt wird Licht durch ein Prisma in seine verschiedenen Wellenlängen getrennt.
 Die Winkeldifferenz zwischen zwei Wellenlängen ist jedoch abhängig von der
 Differenz in den Brechungsindizes, welche in der Regel sehr klein ist.
-Beispielsweise hat Glas N-BK7 hat im blauen Bereich bei $\lambda = \result{350}{nm}$
+Beispielsweise hat Glas N-BK7 hat im blauen Bereich bei $\lambda = \qty{350}{\nm}$
 einen Brechungsindex von $1,53924$, während der Brechungsindex im roten Bereich
-bei $\lambda = \result{750}{nm}$ einen Wert von $1,5118$ annimmt (\cite{refractive}).
+bei $\lambda = \qty{750}{\nm}$ einen Wert von $1,5118$ annimmt (\cite{refractive}).
 
 Auch mithilfe eines Gitters kann Licht in seine Wellenlängen zerlegt werden.
 Das zugrundeliegende Prinzip ist nicht wie beim Prisma die Brechung, sondern
@@ -367,9 +363,9 @@ unter dem das Maximum der Ordnung $m$ auftritt
     \sin \alpha \wideeq m \frac \lambda g - \sin \delta.
 \]
 Anders als beim Prismenspektrometer ist der Winkel nun proportional zur
-Wellenlänge $\lambda$. Rotes Licht ($\lambda = \result{350}{nm}$) wir nun
+Wellenlänge $\lambda$. Rotes Licht ($\lambda = \qty{350}{\nm}$) wir nun
 also mehr als doppelt so stark abgelenkt als blaues Licht 
-$\lambda = \result{750}{nm}$). Dadurch können einzelne Wellenlängen genauer bestimmt
+$\lambda = \qty{750}{\nm}$). Dadurch können einzelne Wellenlängen genauer bestimmt
 werden und nahe beieinanderliegende Wellenlängen besser unterschieden werden.
 Weil es aber nun mehrer Intensitätsmaxima gibt, kann es passieren,
 dass ein Maximum einer Wellenlänge zu einer Ordnung sicht mit dem
@@ -548,12 +544,12 @@ Daraus berechnet sich eine absolute Wellenlängendifferenz von
     \left(
         \frac{m_e + m_H}{m_e m_H} - \frac{m_e + m_D}{m_e m_D}
     \right)
-    \wideeq \result{0,1849}{nm} \coderef{vorbereitung}
+    \wideeq \qty{0.357}{\nm} \quad \coderef{vorbereitung}
 \]
 sowie eine relative Differenz von
 \[
-    \frac{\Delta \lambda}{\lambda_H} \wideeq 2,872 \cdot 10^{-4}.
-    \coderef{vorbereitung}
+    \frac{\Delta \lambda}{\lambda_H} \wideeq \num{5.44e-4}
+    \quad \coderef{vorbereitung}
 \]
 
 \newpage
@@ -561,73 +557,106 @@ sowie eine relative Differenz von
 \section{Veruschsablaufplan}
 
 \subsection{Benötigte Materialien}
+\subsubsection{Teilversuch 1: Balmer-Serie des Wasserstoffatoms}
     \begin{enumerate}[label=\arabic*.]
-        \item Eins
-        \item Zwei
+        \item H-Lampe
+        \item Spaltvorrichtung
+        \item Linsen (konkav und konvex gekrümmt)
+        \item Reflexionsgitter
+        \item CCD-Kamera
+        \item Oszilloskop
+    \end{enumerate}
+\subsubsection{Teilversuch 2: Linienspektrum des Deuteriumatoms}
+    \begin{enumerate}[label=\arabic*.]
+        \item Spektrallampe ($H_2O+D_2O$-Lampe)
+        \item Spaltvorrichtung
+        \item 2 Linsen (konvex gekrümmt)
+        \item Holografisches Gitter (2400Spalte/mm)
+        \item CCD-Kamera
+        \item Oszilloskop
     \end{enumerate}
 
 \newpage
 
-\subsection{Teilversuch 1: Bragg-Reflexion von Röntgenstrahlung des Molybdän an einem NaCl-Eiskristall}
+\subsection{Teilversuch 1: Balmer-Serie des Wasserstoffatoms}
 \begin{enumerate}[label = (\Roman*)]
-    \item Ziel: ...
+    \item Ziel: Bestimmen der Rydberg-Konstanten
     
-    \item Versuchsmethode: ...
+    \item Versuchsmethode: Bestimmen der Wellenlängen der vier sichtbaren Linien der Balmer–Serie des Wasserstoffatoms.
     
     \item Versuchsskizze:
     
         \begin{figure}[H]
         \centering
-        \includegraphics[width=0.7\linewidth]{Bild}
+        \includegraphics[width=0.7\linewidth]{Abbildungen/TV1.jpeg}
         \caption{Versuchsskizze Teilversuch 1}
         \end{figure}
 
     \item Planung der Durchführung
         \begin{itemize}
-            \item eins
-            \item zwei
-        \end{itemize}
+            \item Platzieren der Linse 1 ($f_1=10cm$), damit im Abstand $f$ ein kollimiertes Lichtbündel entsteht
+            \item Anpassen des Strahlengangs an die Lochreihe ($h=19cm$)
+            \item Gitter so einstellen, dass es senkrecht vom Strahl getroffen wird. Dadurch erreicht man, dass die nullte Ordnung zurückreflektiert wird
+            \item Den optischen Tisch so einstellen, dass der Winkel gegen den Nonius 0 Grad beträgt
+            \item Suchen der Linien der ersten Ordnung auf einem Schirm hinter dem Versuchsaufbau (Linse 2 $f_2=5cm$)
+            \item Spektrum auf CCD-Kamera abbilden
+            \item Spektrum am Oszilloskop beobachten und Linsen so justieren, dass alle vier Linien der Balmer-Serie gut sichtbar sind (externe Triggerung der CCD-Kamera)
+            \item Aufbau ist nun bereit zur Messung; Raum verdunkeln und mittels Mittelwertfunktion einen möglichst rauscharmen Graph erhalten
+            \item Aufnahme stoppen und das erhaltene Spektrum ausdrucken
+            \item Mit Hilfe des Cursors alle Positionen der im Spektrum erkennbaren Linien bestimmen (Positionen in Ausdruck notieren)
+            \item Wie kann man nun auf die Peaks am CCD schließen?
+            \item Verdrehen des Gitters, bis nullte Ordnung auf Bildschirm erscheint
+            \item Wieiterdrehen, bis die nullte Ordnung nacheinander mit den Positionen der H-Linien auf dem Bildschirm übereinstimmt. 
+            \item Warum abgelesenen Winkel verdoppel?
+            \end{itemize}
 
     \item Vorüberlegungen zur Durchführung \& Auswertung
         \begin{itemize}
-            \item eins
-            \item zwei
+            \item Breite der CCD-Zelle: $b=28,75mm$
+            \item Winkel immer unter Bezug der Nonius-Skala ablesen
+            \item Vergleich mit dem Literaturwert! Wenn sinnvoll: fortfahren, ansonsten Messung wiederholen
+            \item Fehlerquellen und Abweichungen!
+            \item Woher stammen zusätzliche Linien??
         \end{itemize}
     
 \end{enumerate}
 
 \newpage
 
-\subsection{Teilversuch 2: Energiespektrum einer Röntgenröhre in Abhängigkeit der Spannung}
+\subsection{Teilversuch 2: Linienspektrum des Deuteriumatoms}
 \begin{enumerate}[label = (\Roman*)]
-    \item Ziel: 
+    \item Ziel: Vergleich des Spektrums des Deuteriumatoms mit dem Spektrum des Wasserstoffatoms 
     
-    \item Versuchsmethode: 
+    \item Versuchsmethode: Feststellen einer spektralen Aufspaltung im Wasserstoff–Deuterium-Gemisch
     
     \item Versuchsskizze:
     
         \begin{figure}[H]
         \centering
-        \includegraphics[width=0.7\linewidth]{Bild}
+        \includegraphics[width=0.7\linewidth]{Abbildungen/TV2.jpeg}
         \caption{Versuchsskizze Teilversuch 2}
         \end{figure}
 
     \item Planung der Durchführung
         \begin{itemize}
-           \item eins
-           \item zwei
+           \item Eine der Balmer-Serien auswählen und mit Hilfe von Linse 3 ($f_3=35cm$) scharf auf CCD-Kamera abbilden
+           \item Justieren des Aufbaus, bis eine Aufspaltung der Linien beobachtbar wird
+           \item Welches Intesitätsverhältnis ist zu erwarten?
+           \item Wellenlängenunterschied bestimmen (Abstand Linse 3 - CCC-Kamera und Linienabstand auf CCD-Kamera messen)
         \end{itemize}
 
     \item Vorüberlegungen zur Durchführung \& Auswertung
         \begin{itemize}
-            \item eins
-            \item zwei
+            \item Warum hat man eine Aufspaltung der Linien? Warum ist diese bei Teilverusch 1 nicht sichtbar?
+            \item Wellenlängendifferenz der Doppellinie berechnen
         \end{itemize}
         
 \end{enumerate}
 
 
 \newpage
+
+\iffalse
 
 \section{Versuchsprotokoll}
 
@@ -646,7 +675,9 @@ Alle weiteren Rechnungen und Analysen finden in der Versuchsasuwertung statt.
 
     \subsection{Teilversuch 1: Bragg-Reflexion von Röntgenstrahlung des Molybdän an einem NaCl-Eiskristall}
 
-    \newpage
+\newpage
+
+\fi
 
 \section{Anmerkung: Graphische Auswertung und Fehlerfortpflanzung mit Python-Code}
 
@@ -656,12 +687,13 @@ vermeiden. Alle Ergebnisse, die auf diese Weise zustande gekommen sind,
 sind entsprechend mit einem \colorbox{codebg}{blauen Hintergrund} gekennzeichnet;
 s. folgendes Beispiel:
 \[
-    F \wideeq ma \wideeq \result{20}{kg} \cdot 9,81 \, \frac{\text m}{\text s^2}
-    \wideeq \result{(19,62 \pm 0,5)}{N} \coderef{tv1}
+    F \wideeq ma \wideeq \qty{20}{\kg} \cdot \qty{9.81}{\meter\per\square\second}
+    \wideeq \qty{19.6 \pm 0.5}{\newton} \quad \coderef{tv1}
 \]
 Dies soll bedeuten, dass die Berechnung des Wertes und der Unsicherheit von der
 Python-Funktion namens \verb|tv1| durchgeführt wird.
-Die Unsicherheit wird mithilfe der Gauß'schen Fehlerfortpflanzung berechnet.
+Die Unsicherheit wird - sofern nicht anders angegeben - mithilfe der Gauß'schen
+Fehlerfortpflanzung berechnet.
 Außerdem wird das Python-Package \texttt{matplotlib} zum Erstellen
 von Graphen verwendet.
 
@@ -676,15 +708,15 @@ Stellen unvollständig erscheinen. Auf GitHub wird aber alles richtig angezeigt.
 \newpage
 
 
-\verb|Main.py|:
-\lstinputlisting[language=Python]{Code/Main.py}
+\verb|main.py|:
+\lstinputlisting[language=Python]{Code/main.py}
 \newpage
 
-\verb|Expressions.py|:
-\lstinputlisting[language=Python]{Code/Expressions.py}
-\newpage
+% \verb|expressions.py|:
+% \lstinputlisting[language=Python]{Code/expressions.py}
+% \newpage
 
 Output:
-\lstinputlisting{Code/Output.txt}
+\lstinputlisting{Code/output.txt}
 
 \end{document}

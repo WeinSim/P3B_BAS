@@ -1,0 +1,4 @@
+lambda_H = 6.5647e-07
+lambda_D = 6.56112e-07
+delta_lambda = 3.5733e-10
+rel_difference = 0.000544321
