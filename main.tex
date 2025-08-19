@@ -656,8 +656,6 @@ sowie eine relative Differenz von
 
 \newpage
 
-\iffalse
-
 \section{Versuchsprotokoll}
 
 Auf den folgenden Seiten befindet sich das eingescannte Versuchsprotokoll.
@@ -667,17 +665,241 @@ wurde sie klar gekennzeichnet.
 Messunsicherheiten wurden angegeben und folgend in der Auswertung verwendet.
 Alle weiteren Rechnungen und Analysen finden in der Versuchsasuwertung statt.
 
-\includepdf[pages={...}, pagecommand={\thispagestyle{scrheadings}}, frame=true]{[Name.pdf]]}
+\includepdf[pages={1-7}, pagecommand={\thispagestyle{scrheadings}}, frame=true]{Protokoll.pdf}
 
 \newpage
 
 \section{Auswertung}
 
-    \subsection{Teilversuch 1: Bragg-Reflexion von Röntgenstrahlung des Molybdän an einem NaCl-Eiskristall}
+\subsection{Teilversuch 1: Balmer-Serie des Wasserstoffatoms}
+
+Die Gittergleichung für die erste Ordnung lautet
+\[
+    \sin \alpha \wideeq \frac \lambda g - \sin \delta
+\]
+Für unsere erste Messreihe war das Gitter senkrecht zum einfallenden Strahl
+ausgerichtet, d.h. $\delta = 0$ und die Wellenlänge $\lambda$ lässt sich
+durch die Formel
+\[
+    \lambda \wideeq g \sin \alpha
+\]
+berechnen. Die Wellenlängen der vier Peaks der ersten Messreihe
+sind in Tabelle \ref{TV1_Messreihe1} aufgetragen.
+In den rechten beiden Spalten sind die Abweichungen dieser berechneten
+Wellenlängen von den $H_\alpha$ ... $H_\delta$ Linien, sowie die
+Abweichungen davon in Vielfachen der Unsicherheiten.
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c|c|c|c}
+        Linie & Experimenteller Wert & Literaturwert & Abweichung \\
+        \hline
+        $H_\alpha$ & \qty{757.9 \pm 1.7}{\nm} & \qty{656.3}{\nm} & \num{61.2}\\
+        $H_\beta$  & \qty{675.2 \pm 2.2}{\nm} & \qty{486.1}{\nm} & \num{87.3} \\
+        $H_\gamma$ & \qty{631.9 \pm 2.4}{\nm} & \qty{434.0}{\nm} & \num{83.6} \\
+        $H_\delta$ & \qty{518.9 \pm 2.8}{\nm} & \qty{410.2}{\nm} & \num{39.2}
+    \end{tabular}
+    \caption{Abweichungen der Wellenlängen der ersten Messreihe
+    von den Literaturwerten (\coderef{tv1})}
+    \label{TV1_Messreihe1}
+\end{table}
+
+Es ist deutlich zu erkennen, dass die experimentell bestimmten Werte
+sehr deutlich von den theoretisch erwarteten abweichen.
+Also ist entweder von einer deutlichen Fehlkalibrierung der Messapparatur
+auszugehen, oder davon, dass dass die beobachteten Linien nicht die Balmer-Serie
+von Wasserstoff sind.
+
+Aufgrund dieser großen Diskrepanzen wurde nach einiger Nachjustierung des Gitters,
+der Linsen und der CCD-Kamera eine zweite Messreihe aufgenommen. Dieses mal
+waren insgesamt 12 Peaks im Oszilloskop erkennbar.
+Bei dieser zweiten Messreihe wurde das Gitter fälschlicherweise jedoch nicht
+senkrecht zum einfallenden Strahl ausgerichtet, sondern um \ang{2} verderht.
+Also muss für die Wellenlänge die Formel
+\[
+    \lambda \wideeq g (\sin \alpha + \sin \delta)
+\]
+verwendet werden (mit $\delta = \ang{2}$).
+Dafür ergeben sich folgende Werte:
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c|c}
+        Peak Nr. & Wellenlänge \\
+        \hline
+        1 & \qty{669.0 \pm   2.3}{\nm} \\
+        2 & \qty{630.2 \pm  2.4}{\nm} \\
+        3 & \qty{616.6 \pm  2.5}{\nm} \\
+        4 & \qty{609.7 \pm  2.5}{\nm} \\
+        5 & \qty{602.7 \pm  2.5}{\nm} \\
+        6 & \qty{597.4 \pm  2.6}{\nm} \\
+        7 & \qty{555.4 \pm  2.7}{\nm} \\
+        8 & \qty{549.7 \pm  2.7}{\nm} \\
+        9 & \qty{501.1 \pm  2.9}{\nm} \\
+        10 & \qty{450 \pm  3}{\nm} \\
+        11 & \qty{425 \pm  4}{\nm} \\
+        12 & \qty{386 \pm  4}{\nm}
+    \end{tabular}
+    \caption{Berechnete Wellenlängen aus der zweiten Messreihe (\coderef{tv1})}
+    \label{TV1_Messreihe2}
+\end{table}
+
+Offensichtlich sind hier mehr Peaks sichtbar als nur die vier sichtbaren der
+Balmer-Serie. Diese stammen vermutlich von anderen Atomen und Molekülen in
+der Wasserstofflampe. In dieser wird zunächst Wasser ($H_2O$) verdampft
+und anschließend in atomaren Wasserstoff ($H$) und eine Hydroxylgruppe ($OH$)
+gespalten. Andere Stoffe (außer atomarem Wasserstoff), die in der Lampe
+vorhanden sind, sind also $H_2O$ und $OH$, sowie eventuell $H_2$, $OH^-$
+und $H_3O^+$. Diese haben eigene Spektrallinien, zusätzlich zum reinen
+Wasserstoffspektrum sichtbar sind.
+
+Es ist schwierig, die zwölf Linien den Linien der Balmer-Serie zuzuordnen.
+Die $H_\alpha$-Linie liegt am nächsten an Peak Nr. 1,
+die $H_\beta$-Linie liegt am nächsten an Peak Nr. 9
+und sowohl die $H_\gamma$- als auch die $H_\delta$-Linie liegen am nächsten
+an Peak Nr. 10. Die $H_\alpha$-, $H_\beta$- und $H_\gamma$-Linien liegen dabei
+jeweils ca. \qty{14}{\nm} unter den Wellenlängen von Peaks Nr. 1 bzw. 9 bzw. 10.
+Dies könnte auf einen systematischen Fehler hindeuten, welcher zudem dadurch
+bestätigt wird, dass die $H_\delta$-Linie ebenfalls ca. \qty{14}{\nm} unter der
+Wellenlänge von Peak Nr. 11 liegt.
+Also werden im weiteren Verlauf die Peaks Nr. 1, 9, 10 und 11 für die
+$H_\alpha$- ... $H_\delta$-Linien verwendet.
+Die relativen Abweichungen sind in Tabelle \ref{TV1_Balmer-Serie} aufgetragen:
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c|c|c|c}
+        Linie & Experimenteller Wert & Literaturwert & Abweichung \\
+        \hline
+        $H_\alpha$ & \qty{669 \pm 2.3}{\nm}   & \qty{656.3}{\nm} & \num{5.8} \\
+        $H_\beta$  & \qty{501.1 \pm 2.9}{\nm} & \qty{486.1}{\nm} & \num{5.3} \\
+        $H_\gamma$ & \qty{450 \pm 3}{\nm}     & \qty{434.0}{\nm} & \num{5.4} \\
+        $H_\delta$ & \qty{425 \pm 4}{\nm}     & \qty{410.2}{\nm} & \num{4.8}
+    \end{tabular}
+    \caption{Abweichungen der Wellenlängen der zweiten Messreihe
+    von den Literaturwerten (\coderef{tv1})}
+    \label{TV1_Balmer-Serie}
+\end{table}
+
+Aus diesen Wellenlängen wird nun die Rydberg-Konstante bestimmt.
+Trägt man $\frac 1 \lambda$ auf der $y$-Achse gegen
+$\left[ \frac{1}{n^2} - \frac{1}{m^2} \right]$ (mit $n = 2$, weil die
+Balmer-Serie untersucht wird) auf der $x$-Achse auf, so sollte sich wegen folgender
+Gleichung \ref{eq_Rydberg} eine Gerade ergeben,
+deren Steigung die Rydberg-Konstante ist:
+\begin{equation}
+    \frac 1 \lambda \wideeq R_\infty \left[ \frac{1}{n^2} - \frac{1}{m^2} \right]
+    \label{eq_Rydberg}
+\end{equation}
+Abbildung \ref{Graph_TV1} zeigt unsere gemessenen Werte sowie eine Ausgleichsgerade:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\linewidth]{Abbildungen/Graph_TV1.pdf}
+    \caption{Graph mit inversen Wellenlängen zur Bestimmung der Rydberg-Konstante
+    (\coderef{tv1})}
+    \label{Graph_TV1}
+\end{figure}
+
+Die Unsicherheiten der Parameter $m$ und $b$ ergeben sich dabei
+aus den Quadratwurzeln der Diagonalelemente der Kovarianzmatrix der Regression.
+
+Aus dem Parameter $m$ ergibt sich ein Wert der Rydberg-Konstante von
+$R_y = \qty{1.029 \pm 0.007 e7}{\per\meter}$.
+Dieser Wert weicht zwar nur um \qty{6}{\percent} vom Literaturwert
+von \qty{1.09737e7}{\per\meter} ab, liegt aber aufgrund der geringen Unsicherheit
+(welche dadurch zustande kommt, dass die Punkte sehr gut auf einer Geraden liegen),
+trotzdem \num{12.2} Unsicherheiten unter diesem und ist damit nicht mit diesem
+verträglich (\coderef{tv1}).
+
+Aus Gleichung \ref{eq_Rydberg} würde man eine Ursprungsgerade erwarten, d.h.
+der Parameter $b$ der Ausgleichsgeraden sollte den Wert $0$ haben.
+Tatsächlich nimmt dieser aber einen Wert von \num{5.6 \pm 1.1} an.
+
+Eine mögliche Ursache für sowohl die Abweichung von $m$ von der Rydberg-Konstante
+als auch die Abweichung von $b$ von $0$ könnten die systematisch zu großen
+Wellenlängen sein, die (s.o.) jeweils ca. \qty{14}{\nm} über dem erwarteten
+Wert liegen.
+
+Zudem ist hier nochmal aufzuführen, dass wir uns nicht sicher sind, ob die gewählten
+Wellenlängen tatsächlich der Balmer-Serie des Wasserstoff entsprechen,
+da sie selektiv aus den 12 vorhandenen Werten ausgewählt wurden.
+Während dem Versuch konnten wir beobachten, dass selbst bei minimaler
+Veränderung der Position oder Rotation einer der Komponenten (Linsen, Gitter,
+CCD-Kamera) das Signal am Oszilloskop sehr stark verändert wurde. Die Breite,
+Intensität und Position und auch die Anzahl der Peaks veränderte sich
+sehr oft, wodurch es schwierig war, genaue Messungen durchzuführen.
+
+Eine weitere Ungenauigkeit könnte dadurch entstehen, dass der Nullpunkt der
+Winkelskala schwierig zu bestimmen war. Die Rückreflexion war um einiges
+dunkler als der Strahl, der aus der Lampe kam. Dies führt zu einer
+Unsicherheit im Winkel $\delta$, die in den Berechnungen nicht berücksichtigt wurde.
+
+Zuletzt soll noch das Auflösungsvermögen des Gitters bestimmt werden.
+Die Strahlbreite schätzen wir grob auf \qtyrange{1}{5}{\mm}.
+Also soll im Folgenden ein Durchschnittswert von $ b = \qty{2.5}{\mm}$
+verwendet werden. Es ist anzumerken, dass die Breite des austretenden Strahls
+an der Wasserstofflampe zwischen den einzelnen Messreihen / Teilversuchen
+öfter geändert wurde und somit nicht konstant war.
+Daraus berechnet sich (mit der Gitterkonstante $1 / g = \qty{1200}{\per\mm}$
+und der Ordnung $m = 1$) ein Auflösungsvermögen von
+\[
+A \wideeq bg \wideeq 3000
+\]
+sowie bei $\lambda = \qty{656}{\nm}$ ein minimaler Wellenlängerunterschied
+\[
+     \Delta \lambda \wideeq \frac{\lambda}{A} \wideeq \qty{0.22}{\nm}
+\]
+Dieses Auflösungsvermögen entspricht circa einem Zehntel der Unsicherheit
+für unsere Wellenlänge der $H_\alpha$-Linie.
 
 \newpage
 
-\fi
+\subsection{Teilversuch 2: Linienspektrum des Deuteriumatoms}
+
+In diesem Teilversuch wurde eine Lampe mit einem 90/10 Wasserstoff-Deuterium-Gemisch
+verwendet. Deuterium besitzt einen schwereren Kern und dadurch Energieniveaus,
+die gegenüber denen von Wasserstoff minimal verschoben sind.
+Daher spaltet sich jede Linie in zwei Linien auf, wobei jeweils die von
+Deuterium stammende schwächer ist (weil nur \qty{10}{\percent} des Gemischs
+Deuterium sind) und zudem blauverschoben ist.
+
+Aus der am Oszilloskop gemessenen Zeitdifferenz $\Delta t$ kann der Abstand der
+Linien auf dem CCD-Sensor berechnet werden. Daraus kann dann die
+Wellenlängendifferenzberechnet werden. Der Umrechnungsfaktor der ersten
+Umrechnung ist die Scangeschwindigkeit des CCD-Sensors, welcher das Verhältnis
+aus dessen Breite $b_\text{CCD}$ zur Zeitdauer einer Scanlinie
+($\Delta t_\text{CCD}$) ist. Es gilt
+\[
+    \Delta x \wideeq \frac{\Delta t}{\Delta t_\text{CCD}} b_\text{CCD}
+\]
+Zusammen mit der Formel aus dem Skript ergibt sich damit
+\[
+    \Delta \lambda \wideeq \frac{g \cos \alpha}{d} \Delta x
+    \wideeq \frac{g \cos \alpha}{d}
+    \frac{\Delta t}{\Delta t_\text{CCD}} b_\text{CCD}
+    \wideeq \qty{0.256 \pm 0.027}{\nm} \quad (\coderef{tv2})
+\]
+
+In der Vorbereitung wurde ein falscher Wert für die Masse des Deuteriumkerns
+verwendet, wodurch die daraus berechnete Wellenlänge auch falsch war.
+Der Fehler wurde inzwischen verbessert.
+Mit dem verbesserten Code (mit der gleichen Formel) ergibt sich eine
+Wellenlängendifferenz von
+\[
+    \Delta \lambda \wideeq \qty{0.179}{\nm} \quad (\coderef{vorbereitung})
+\]
+Von diesem Wert ist unser experimentell bestimmter Wert \num{2.97}
+Unsicherheiten entfernt (\coderef{tv2}) und damit gerade noch mit diesem
+verträglich. Mögliche Fehler könnten in einer Fehlkalibrierung der Winkelskala
+oder in einem ungenauen Auslesen der Peaks aus dem Oszilloskop begründet sein.
+Des Weiteren war es bei diesem Teilversuch schwierig, die Linsen, das Gitter
+und die CCD-Kamera so auszurichten, dass die zwei Peaks überhaupt voneinander
+getrennt werden konnten. Eine noch genauere Justierung der Elemente
+könnte eine noch bessere Auflösung der beiden Peaks liefern, wodurch
+das Ergebnis näher an den theoretisch erwarteten Wert rücken würde.
+
+\newpage
 
 \section{Anmerkung: Graphische Auswertung und Fehlerfortpflanzung mit Python-Code}
 
