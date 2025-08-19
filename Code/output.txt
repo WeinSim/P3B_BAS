@@ -1,4 +1,31 @@
+--- Vorbereitung ---
 lambda_H = 6.5647e-07
-lambda_D = 6.56112e-07
-delta_lambda = 3.5733e-10
-rel_difference = 0.000544321
+lambda_D = 6.56291e-07
+delta_lambda = 1.78576e-10
+rel_difference = 0.000272025
+--- Teilversuch 1 ---
+Messreihe 1
+Value =    7.579e-07, Uncertainty =     1.66e-09, deviation =         61.2
+Value =    6.752e-07, Uncertainty =     2.17e-09, deviation =         87.3
+Value =    6.319e-07, Uncertainty =     2.37e-09, deviation =         83.6
+Value =    5.189e-07, Uncertainty =     2.77e-09, deviation =         39.2
+Messreihe 2
+Value =     6.69e-07, Uncertainty =      2.2e-09, deviation =         5.79
+Value =    6.302e-07, Uncertainty =     2.37e-09
+Value =    6.166e-07, Uncertainty =     2.43e-09
+Value =    6.097e-07, Uncertainty =     2.46e-09
+Value =    6.027e-07, Uncertainty =     2.49e-09
+Value =    5.974e-07, Uncertainty =     2.51e-09
+Value =    5.554e-07, Uncertainty =     2.66e-09
+Value =    5.497e-07, Uncertainty =     2.68e-09
+Value =    5.011e-07, Uncertainty =     2.83e-09, deviation =         5.31
+Value =    4.499e-07, Uncertainty =     2.96e-09, deviation =         5.39
+Value =    4.246e-07, Uncertainty =     3.02e-09, deviation =         4.77
+Value =    3.857e-07, Uncertainty =      3.1e-09
+Fitparameter (m, b):
+Werte:           1.029e+07 6.479e+04
+Unsicherheiten:  5.571e+04 1.071e+04
+Abweichung von R_y: 12.20 Standardabweichungen, 0.06 %
+A = 3000.000, dl = 2.19e-10
+--- Teilversuch 2 ---
+Value =     2.56e-10, Uncertainty =    2.607e-11, Deviation = 2.97
